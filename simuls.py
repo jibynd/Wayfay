@@ -68,7 +68,7 @@ class ExampleThree:
 
     def __post_init__(self):
         B = np.zeros(100)
-        B[np.arange(9,100,10)] = 10
+        B[np.arange(9,100,10)] = 5
         B[np.arange(9,50,10)] = 0.5
         def cov(i, j):
             return 0.5**(abs(i-j))
