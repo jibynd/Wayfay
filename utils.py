@@ -28,3 +28,37 @@ def phi(u, M, v = None, noInv = False):
         #val = M * u @ v
     #print(u.shape, M.shape, v.shape)
     return np.dot(np.dot(u.T, M) ,v)
+
+def dot(u, v):
+    return np.dot(u, v)
+
+def tdot(u, v, w):
+    return np.dot(u, np.dot(v, w))
+
+def inv(x):
+    return np.linalg.inv(x)
+
+def log(x):
+    return np.log(x)
+
+def det(x):
+    return np.linalg.det(x) 
+
+def make_psd(M, eps = 1/1000):
+    p, p_ = M.shape
+    assert(p == p_)
+    eigs = np.linalg.eigh(M)
+    me = eigs[0].min()
+    if me < 0:
+        M = M + (eps - me)* np.eye(p)
+    return M 
+
+def make_1d(m):
+    m = m.squeeze() 
+    if m.ndim == 0:
+        m = [m]
+    return m
+
+def dashboard(i, nIter):
+    if i % int(0.2 * nIter) == 0:
+        print("Iter: ", i)
